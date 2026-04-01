@@ -1,24 +1,24 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/Eastar-s-website/',
-  plugins: [react(), tailwindcss()],
+  plugins: [react()],
+  base: '/Eastar-s-website/', // 极其重要：这对应你的 GitHub 仓库名
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './client/src'),
+      "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    // 确保生成 sourcemap 方便调试（可选）
+    sourcemap: false,
   },
   server: {
-    host: '0.0.0.0',
     port: 3000,
-    hmr: {
-      protocol: 'wss',
-      host: 'localhost',
-      port: 443,
-    },
-  },
+    open: true
+  }
 })
