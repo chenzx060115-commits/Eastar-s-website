@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eastar's Website</title>
+    <script>
+      // SPA redirect logic for GitHub Pages
+      const path = window.location.pathname;
+      const base = '/Eastar-s-website';
+      
+      // If the path starts with the base, remove it and redirect to index.html
+      if (path.startsWith(base)) {
+        const newPath = path.slice(base.length) || '/';
+        sessionStorage.redirect = newPath;
+        window.location.href = base + '/index.html';
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

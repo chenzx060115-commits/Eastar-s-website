@@ -1,8 +1,12 @@
-import { Route, Switch } from 'wouter'
+import { Route, Switch, useLocation } from 'wouter'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import { useEffect } from 'react'
 
 function Router() {
+  // Get the base path from import.meta.env.BASE_URL (set by Vite)
+  const basePath = import.meta.env.BASE_URL
+  
   return (
     <Switch>
       <Route path="/" component={Home} />
