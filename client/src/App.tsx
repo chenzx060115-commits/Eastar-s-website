@@ -1,25 +1,26 @@
-import { Route, Switch, useLocation } from 'wouter'
+import { Route, Switch, Router } from 'wouter'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
-import { useEffect } from 'react'
 
-function Router() {
-  // Get the base path from import.meta.env.BASE_URL (set by Vite)
-  const basePath = import.meta.env.BASE_URL
-  
+// Get the base path from Vite's import.meta.env.BASE_URL
+const basePath = import.meta.env.BASE_URL
+
+function AppRouter() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <Router base={basePath}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   )
 }
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Router />
+      <AppRouter />
     </div>
   )
 }
