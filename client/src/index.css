@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 10 10 20;
+    --foreground: 230 230 240;
+    --primary: 168 85 247;
+    --primary-dark: 147 51 234;
+    --accent: 236 72 153;
+    --border: 30 30 50;
+    --card-bg: 20 20 35;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glow-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))];
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-[rgb(var(--card-bg))]/40 border border-[rgb(var(--border))]/20 rounded-2xl;
+  }
+
+  .card-glass {
+    @apply backdrop-blur-xl bg-[rgb(var(--card-bg))]/60 border border-[rgb(var(--border))]/30 rounded-xl p-6 transition-all duration-300 hover:border-[rgb(var(--primary))]/50 hover:shadow-lg hover:shadow-[rgb(var(--primary))]/20;
+  }
+
+  .breathing-light {
+    animation: breathing 3s ease-in-out infinite;
+  }
+
+  .glow-button {
+    @apply relative px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--primary-dark)));
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  }
+
+  .glow-button:hover {
+    @apply scale-105;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+  }
+
+  .scroll-fade {
+    animation: scrollFade 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes breathing {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.2);
+    }
+  }
+
+  @keyframes scrollFade {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--primary-dark));
+}
